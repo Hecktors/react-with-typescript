@@ -1,7 +1,9 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
+import { TodosContext } from '../../store/todos-context'
 import style from './NewTodo.module.css'
 
-const NewTodo: React.FC<{ onAddTodo: (todo: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todosCtx = useContext(TodosContext)
   const todoTextInputRef = useRef<HTMLInputElement>(null)
 
   const onSubmitHandler = (event: React.FormEvent) => {
@@ -14,7 +16,7 @@ const NewTodo: React.FC<{ onAddTodo: (todo: string) => void }> = (props) => {
       // throw an error
       return
     }
-    return props.onAddTodo(enteredText)
+    return todosCtx.addTodo(enteredText)
   }
 
   // Using todo state and change handler
