@@ -1,9 +1,11 @@
+import { v4 as uuid } from 'uuid'
+
 class Todo {
-  id: number
+  id: string
   text: string
 
   constructor(todoText: string) {
-    this.id = Math.random()
+    this.id = uuid()
     this.text = todoText
   }
 }
