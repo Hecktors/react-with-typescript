@@ -1,7 +1,8 @@
 import React from 'react'
 import Todos from './components/Todos'
+import Todo from './models/todo'
 
-const todos = ['Learn Typescript', 'Learn Unit Tests']
+const todos = [new Todo('Learn Typescript'), new Todo('Learn Unit Tests')]
 
 function App() {
   return (
