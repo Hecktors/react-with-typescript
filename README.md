@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+# React with TypeScipt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Types
 
-## Available Scripts
+```
+let isOpen: boolean = true;                               // boolean
+let age: number = 5;                                      // number
+let fullName: string = 'John Doe';                        // string
+let alpha1: string[] = ['a', 'b', 'c';                    // array
+let alpha2: Array<string> = ['a', 'b', 'c'];              // array - other way
+let person: object = { name: 'John Doe', age: 50};        // object
+let u: undefined = undefined;                             // undefined
+let n: null = null;                                       // null
+let basket: [string, number] = ['basketball', 5];         // Tuple - array with div. types
 
-In the project directory, you can run:
+enum Size { Small = 1, Medium = 2, Large = 3};            // Enum
+let sizeName: string = Size[2];
+let sizeNumber: number = Size.Small;
 
-### `npm start`
+let x: any = ['a', 1];                                    // any - can be any type, try to avoid
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Functions
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+let add = (num: number):string => { return num + "x" };   // function - gets number, returns string
+let addPrint = (): void => { console.log(1 + 2) };        // void - error: expects no return
+let error = (): never => { throw Error('error!') };       // never - no return and throws error
+```
 
-### `npm test`
+### Type Inference (better practice)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+let name = 'John Doe';                                    // ts realizes that it’s a string type
+```
 
-### `npm run build`
+### Union Type
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+let age: string | number = 5;
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Type Alias
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+interface Person {
+  name: string,
+  age?: number
+};          // interface - ? = optional
+let John: Person;
+```
 
-### `npm run eject`
+### Generics
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+function addAtBeginning<T>(array: T[], value: T):T[] {    // array has same types as value
+  return [value, ...array];
+}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const addAtBeginning2 = <T>(array: T[], value: T): T[] => {
+  return [value, ...array];
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Class Component
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+class App extends React.Component<MyProps, MyState>
+```
 
-## Learn More
+### Functional Component
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+const TodoItem: React.FC<{ text: string; onAddTodo: (text: string) => void }> = (props) => {...}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const HighOrderComponent: React.FC<{ children: React.ReactNode }> = (props) => {...}
+```
+
+### Input Change Handler Event
+
+```
+const changeHandler= (event: React.FormEvent<HTMLInputElement>) => {...}
+```
