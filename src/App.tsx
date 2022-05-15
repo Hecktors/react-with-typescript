@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import NewTodo from './components/NewTodo'
-import Todos from './components/Todos'
+import NewTodo from './components/NewTodo/NewTodo'
+import Todos from './components/Todos/Todos'
 import Todo from './models/todo'
 
 function App() {
